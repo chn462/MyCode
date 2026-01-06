@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: xiaolong-price
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+  config:
+    import:
+      #        - optional:nacos:${spring.application.name}.yml
+      - optional:nacos:db-common.yml    #公共配置
+      - nacos:nacos-discovery.yml
+      - nacos:redis-common.yml
+
+logging:
+  level:
+    com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader: DEBUG
+    org:
+      springframework:
+        web: DEBUG
+        data:
+          redis: info
+      mybatis: DEBUG
+    your.package.name: DEBUG

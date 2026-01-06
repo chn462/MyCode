@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: xiaolong-task
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+  config:
+    import:
+      #        - optional:nacos:${spring.application.name}.yml
+      - optional:nacos:db-common.yml    #公共配置
+      - nacos:nacos-discovery.yml
+      - nacos:redis-common.yml
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        data:
+          redis: info
+      mybatis: DEBUG
+    your.package.name: DEBUG
